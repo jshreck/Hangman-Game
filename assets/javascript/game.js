@@ -1,16 +1,18 @@
 // Create array of possible word choices
-var wordChoices = ["SNITCH", "BROOMSTICK", "MUGGLE"];
+var wordChoices = ["CAT", "DOG", "MOUSE"];
 var word = "";
 var wordArray = [];
 var userWord = "";
 var userWordArray = [];
-// Display blanks in html for # of letter in word
-// Create array for letter guessed -> will want to display this but only display the letters not in the word array
+// Create array for letters guessed -> will want to display this but only display the letters not in the word array
 var lettersGuessed = [];
 // Start counting guesses remaining
 var guessesRemaining = 3;
-//If user guessed the word they win, if they didn't and are out of guesses they lose, if they didn't and still have guesses remaining they continue playing
+// Tracking Wins/Loses
+var win = 0;
+var lose = 0;
 
+// Reset for next game
 function reset () {
     word = "";
     wordArray = [];
@@ -29,13 +31,13 @@ function newWord() {
     console.log(wordArray);
     //Display the # of blanks in the word
     for (var i = 0; i < wordArray.length; i++) {
-        userWordArray.push("_");
+        userWordArray.push(" _ ");
     }
-    console.log(userWordArray);
+    $("#userWord").html(userWordArray);
     //Display guesses remaining
-    console.log(guessesRemaining);
+    console.log("guessesRemaining" + guessesRemaining);
     //Display letters guessed
-    console.log(lettersGuessed)
+    console.log("letterGuessed:" + lettersGuessed)
 }
 
 // Check to see if letter guessed has been guessed before
@@ -65,7 +67,8 @@ function checkGuess(userGuess) {
         // If correct, display where that letter appears
         if (userGuess === wordArray[i]) {
             userWordArray.splice(i, 1, userGuess);
-            console.log(userWordArray);
+            $("#userWord").html(userWordArray);
+            alert(userWordArray);
             gotOne = true;
         }
     }
@@ -79,23 +82,28 @@ function checkGuess(userGuess) {
 }
 // }
 
-//check to see if user has won or lost
+//check to see if user has won or lost and track win/loss
 function checkStatus() {
     userWord = userWordArray.join("");
     console.log(userWord);
     if (userWord === word) {
         alert("You win, Liberacorpus!");
+        win +=1;
+        console.log("wins:" + win);
         newWord();
     }
     else if (guessesRemaining === 0) {
-        alert("You lose, Levicorpus!. The word was " + word + ".");
+        alert("You lose, Levicorpus! The word was " + word + ".");
+        lose -= 1;
+        console.log("loses:" + lose);
         newWord()
     }
 }
 
 
-
+$(document).ready(function() {
 newWord();
+});
 
 //User will press a key to guess a letter
 document.onkeyup = function (event) {
