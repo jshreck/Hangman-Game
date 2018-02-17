@@ -1,29 +1,19 @@
-//Set up buttons
-var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
-for (var i = 0; i < alphabet.length; i++) {
-
-    var $letterBtn = $("<button>")
-        .addClass("letter-button")
-        .attr("data-letter", alphabet[i])
-        .html(alphabet[i]);
-
-    $("#letter-options").append($letterBtn);
-}
-
-// Create array of possible word choices 
 var wordChoices = ["CAT", "DOG", "MOUSE"];
+var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+//"trackers"
 var word = "";
 var wordArray = [];
 var userWord = "";
 var userWordArray = [];
-// Create array for letters guessed (incorrectly)
+var userGuess;
 var lettersGuessed = [];
-// Start counting guesses remaining
-var guessesRemaining
-// Tracking Wins/Loses
+var guessesRemaining;
 var win = 0;
 var lose = 0;
+// booleans
+var guessed;
+var isLetter;
+
 
 // Rest game and pick a random word from the array and assign it as the one trying to be guessed
 function newWord() {
@@ -47,6 +37,17 @@ function reset() {
     userWordArray = [];
     lettersGuessed = [];
     guessesRemaining = 6;
+    $("#canvas").clearCanvas();
+    $("#letters-guessed").empty();
+}
+//For keyed only: check to see if key pressed was a letter
+function checkTyped(userGuess) {
+    isLetter = false;
+    for (var i = 0; i < alphabet.length; i++) {
+        if (userGuess === alphabet[i]) {
+            isLetter = true;
+        }
+    }
 }
 // Check to see if letter guessed has been guessed before
 function checkGuessedBefore(userGuess) {
@@ -79,18 +80,18 @@ function checkGuess(userGuess) {
         }
     }
     // If wrong, -1 for guesses remaining, add the letter to letters guessed, and then draw part of hangman
-    if (gotOne === false) {
+    if (!gotOne) {
         guessesRemaining -= 1;
         console.log("guessesRemaining " + guessesRemaining);
         lettersGuessed.push(userGuess);
-        $("#letters-guessed").append(userGuess);
+        console.log(lettersGuessed);
+        $("#letters-guessed").append(userGuess + " ")
         drawHangman(guessesRemaining);
     }
 }
 //Drawing the hangman
 function drawHangman(guessesRemaining) {
-    var $canvas = $(canvas);
-
+    var $canvas = $("#canvas");
     if (guessesRemaining === 5) {
         //left leg
         $canvas.drawLine({
@@ -199,18 +200,39 @@ function checkStatus() {
 
 $(document).ready(function () {
     newWord();
-});
+    //Create Buttons/monitor for button clicks -> if button clicked, capture that letter
+    for (var i = 0; i < alphabet.length; i++) {
 
-//User will press a key to guess a letter
-document.onkeyup = function (event) {
-    // Capture the key typed and convert to upper case
-    var userGuess = event.key.toUpperCase();
-    checkGuessedBefore(userGuess);
-    if (guessed === false) {
-        checkGuess(userGuess);
-        checkStatus();
+        var $letterBtn = $("<button>")
+            .addClass("letter-button")
+            .attr("letter", alphabet[i])
+            .html(alphabet[i]);
+
+        $("#letter-options").append($letterBtn);
     }
-}
+    var $letter;
+    // Butoon Clicked
+    $(".letter-button").on("click", function () {
+        $letter = $(this).attr("letter");
+        checkGuessedBefore($letter);
+        if (!guessed) {
+            checkGuess($letter);
+            checkStatus();
+        }
+    });
 
-
-
+    //Keyed
+    document.onkeyup = function (event) {
+        var userGuess = event.key.toUpperCase();
+        checkTyped(userGuess);
+        if (!isLetter) {
+            alert("Please choose a letter");
+            return;
+        }
+        checkGuessedBefore(userGuess);
+        if (!guessed) {
+            checkGuess(userGuess);
+            checkStatus();
+        }
+    }
+});
