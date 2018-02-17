@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <script   src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="./assets/javascript/jcanvas.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/game.js"></script>
-    <title>Hangman</title>
+    <title>Harry Potter Hangman</title>
 </head>
+
 <body>
     <!-- Header -->
     <header>
-        <h1>Hangman</h1>
+        <h1>Harry Potter Hangman</h1>
     </header>
     <div class="container">
         <!-- Display wins/losses -->
         <section class="col-md-2">
+            <h3 id="wins">Wins:</h3>
+            <h3 id="losses">Losses:</h3>
         </section>
-        <!-- Main Content -->
         <section class="col-md-8 main-content">
-            <div class="row"></div>
-                <div class="col-xs-12"></div>
-            <!-- Display word to guess -->
-            <div class="row"></div>
-                <div class="col-xs-12"></div>
-                    <h2 id="userWord"></h2>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Hangman Area -->
+                    <canvas id="canvas" width="300" height="300"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Display word to guess -->
+                <div class="col-xs-12">
+                    <h1 id="userWord"></h1>
+                </div>
+                <div class="row">
+                    <!-- Letter Options -->
+                    <div id="letter-options" class="col-xs-12">
+                    </div>
         </section>
         <!-- Display Letters Guessed -->
         <section class="col-md-2">
+            <h3 id="letters-guessed: ">Letters Guessed:</h3>
         </section>
-    </div>
+        </div>
 </body>
 
 </html>

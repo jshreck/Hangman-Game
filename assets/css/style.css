@@ -4,7 +4,29 @@ body {
 header{
     text-align: center;
 }
+#wins {
+    color: darkgreen;
+}
+#losses {
+    color: darkred;
+}
 .main-content {
     border: 1px solid #000;
+    text-align: center;
+}
+#canvas {
+ border: 1px solid red;
+ width: 100%;
+}
+.letter-button {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    color: black;
+    padding: 2px;
+    float: left;
+    margin: 2px;
+  }
+#letters-guessed {
     text-align: center;
 }
