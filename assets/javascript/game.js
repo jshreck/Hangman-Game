@@ -68,7 +68,7 @@ function checkGuess(userGuess) {
         if (userGuess === wordArray[i]) {
             userWordArray.splice(i, 1, userGuess);
             $("#userWord").html(userWordArray);
-            alert(userWordArray);
+            console.log(userWordArray);
             gotOne = true;
         }
     }
@@ -87,10 +87,12 @@ function checkStatus() {
     userWord = userWordArray.join("");
     console.log(userWord);
     if (userWord === word) {
-        alert("You win, Liberacorpus!");
-        win +=1;
-        console.log("wins:" + win);
-        newWord();
+        setTimeout(function () {
+            alert("You win, Liberacorpus!");
+            win += 1;
+            console.log("wins:" + win);
+            newWord();
+        }, 50);
     }
     else if (guessesRemaining === 0) {
         alert("You lose, Levicorpus! The word was " + word + ".");
