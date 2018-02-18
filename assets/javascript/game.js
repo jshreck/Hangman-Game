@@ -107,6 +107,7 @@ function reset() {
     $("#canvas").clearCanvas();
     $("#letters-guessed").empty();
     drawSpellCaster();
+    $(".letter-button").removeClass("button-clicked");
 }
 function drawSpellCaster() {
     var $canvas = $("#canvas");
@@ -209,7 +210,7 @@ function drawSpellCaster() {
         })
         //scar
         .drawLine({
-            strokeStyle: "red",
+            strokeStyle: "darkred",
             strokeWidth: 1,
             x1: 243, y1: 103,
             x2: 248, y2: 106,
@@ -280,7 +281,7 @@ function drawHangman(guessesRemaining) {
     var $canvas = $("#canvas");
     if (guessesRemaining === 6) {
         $canvas.drawLine({
-            strokeStyle: "yellow",
+            strokeStyle: "gold",
             strokeWidth: 2,
             x1: 195, y1: 125,
             x2: 170, y2: 100,

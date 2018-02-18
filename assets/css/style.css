@@ -1,8 +1,11 @@
 body {
-    /* need background  */
+    background: url("../images/dark_leather.png");
+    font-family: "Bad Script";
 }
 header{
     text-align: center;
+    color: gold;
+    text-shadow: 0 0 5px rgb(253, 255, 119)
 }
 #wins {
     color: darkgreen;
@@ -11,6 +14,7 @@ header{
     color: darkred;
 }
 .main-content {
+    background: url("../images/linedpaper.png");
     border: 1px solid #000;
     text-align: center;
 }
@@ -18,17 +22,20 @@ header{
  width: 70%;
 }
 .letter-button {
-    background: lightgreen;
+    font-weight: bold;
+    background: green;
     float: left;
     margin: 2px;
   }
-.btn:focus,.btn:active {
+.btn:focus, .btn:active {
     background: grey;
-    color: lightgray;
+    color: lightgrey;
+    outline: none;
  }
- .btn:hover {
- background:rgb(255, 253, 151);
- }
+ .btn:hover{
+     background: gold;
+     box-shadow: 0 0 10px rgb(253, 255, 119);
+}
 .button-clicked {
     background: grey;
     color: lightgrey;
