@@ -12,7 +12,7 @@ var wordChoices = ["ACCIO",
     "DIVINATION",
     "DOBBY",
     "DRAGON",
-    "DUMBLEBORE",
+    "DUMBLEDORE",
     "DURMSTRANG",
     "EXPELLIARMUS",
     "FANG",
@@ -427,6 +427,7 @@ $(document).ready(function () {
             alert("Please choose a letter");
             return;
         }
+        var $correspondingBtn = $(".letter-button[letter =" + userGuess + "]").addClass("button-clicked");
         checkGuessedBefore(userGuess);
         if (!guessed) {
             checkGuess(userGuess);
