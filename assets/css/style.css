@@ -15,15 +15,24 @@ header{
     text-align: center;
 }
 #canvas {
- border: 1px solid red;
- width: 100%;
+ width: 70%;
 }
 .letter-button {
-    width: 30px;
-    height: 30px;
+    background: lightgreen;
     float: left;
     margin: 2px;
   }
+.btn:focus,.btn:active {
+    background: grey;
+    color: lightgray;
+ }
+ .btn:hover {
+ background:rgb(255, 253, 151);
+ }
+.button-clicked {
+    background: grey;
+    color: lightgrey;
+}
 .guessed {
     text-align: center;
 }
