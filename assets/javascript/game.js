@@ -107,6 +107,8 @@ function reset() {
     $("#canvas").clearCanvas();
     $("#letters-guessed").empty();
     drawSpellCaster();
+    //need to readd this styling so last button clicked doesn't keep button-clicked styling
+    $(".letter-button").css({"font-weight": "bold", "background": "green", "float": "left", "margin": "2px", "color": "#000"});
     $(".letter-button").removeClass("button-clicked");
 }
 function drawSpellCaster() {
@@ -382,7 +384,7 @@ function checkStatus() {
             win += 1;
             $("#wins").html("Wins: " + win);
             newWord();
-        }, 50);
+        }, 100);
     }
     else if (guessesRemaining === 0) {
         setTimeout(function () {
@@ -390,7 +392,7 @@ function checkStatus() {
             lose += 1;
             $("#losses").html("Losses: " + lose);
             newWord();
-        }, 50);
+        }, 100);
     }
 }
 $(document).ready(function () {
